@@ -1,0 +1,56 @@
+{
+  "name": "${localWorkspaceFolderBasename}.go-dev",
+  "runArgs": [
+   "--security-opt=seccomp=unconfined"
+  ],
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "developer",
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolderBasename}_kiro-config",
+      "target": "/home/developer/.kiro",
+      "type": "volume"
+    },
+    {
+      "source": "${localWorkspaceFolderBasename}_kiro-cli-data",
+      "target": "/home/developer/.local/share/kiro-cli",
+      "type": "volume"
+    },
+    {
+      "source": "${localWorkspaceFolderBasename}_codex-config",
+      "target": "/home/developer/.codex",
+      "type": "volume"
+    },
+    {
+      "source": "${localWorkspaceFolder}/.devcontainer/codex/.agents/skills/sdd-development",
+      "target": "/home/developer/.agents/skills/sdd-development",
+      "type": "bind"
+    },
+    {
+      "source": "${localWorkspaceFolderBasename}_claude-config",
+      "target": "/home/developer/.claude",
+      "type": "volume"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go"
+      ]
+    }
+  },
+  "forwardPorts": [1455, 8080],
+  "portsAttributes": {
+    "1455": {
+      "label": "Codex OAuth callback",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "install -D -m 0644 .devcontainer/codex/.codex/AGENTS.md \"$HOME/.codex/AGENTS.md\""
+}

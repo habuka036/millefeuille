@@ -28,6 +28,19 @@ go.work.sum
 # env file
 .env
 
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# SQLite runtime files
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
 # Editor/IDE
 # .idea/
 # .vscode/

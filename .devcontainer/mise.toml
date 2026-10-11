@@ -1,0 +1,6 @@
+[tools]
+node = "24.19.0"
+python = "3.12.13"
+go = "1.24.2"
+"github:jgm/pandoc" = "3.7.0.2"
+java = "openjdk-25.0.2"
